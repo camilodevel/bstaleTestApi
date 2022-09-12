@@ -2,6 +2,7 @@ const conexion = require('../database/db');
 
 let productos;
 
+// Funcion para traer los campos de productos y llenarlos en la variable let productos de arriba.
 function listarProductos(req, res){
     conexion.query('SELECT id, name, url_image, price, discount, category FROM product', (error, results)=>{
         if(error){
@@ -24,6 +25,7 @@ function listarProductos(req, res){
     })
 }
 
+// Por si en el futuro se necesitan traer los productos por id esta esta funcion.
 function listarProductosPorId(req, res){
     conexion.query(`SELECT id, name, url_image, price, discount, category FROM product WHERE ID = ${req.params.id}`, (error, results)=>{
         if(error){
@@ -45,6 +47,9 @@ function listarProductosPorId(req, res){
     })
 }
 
+
+// buscarProducto es la funcion que se usa para poder buscar los produtos, lo hace con la variable productos que esta al principio
+// De este script, esa variable se carga cuando se llama al get productos.
 function buscarProducto(req, res){
 
     if(!req.params.palabra){

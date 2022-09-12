@@ -1,4 +1,8 @@
 # bstaleTestApi
+  En caso de estar trabajando local favor de cambiar 
+  urlProduccion = https://backend-bsaletest.herokuapp.com/bsaletest/v1/products/ 
+  urlLocal = http://localhost:5000/bsaletest/v1/products/
+
 
      Al ahacer esta peticion GET https://backend-bsaletest.herokuapp.com/bsaletest/v1/products/
      deberia devolver el siguiente formato json
