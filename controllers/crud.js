@@ -25,9 +25,31 @@ function listarProductos(req, res){
     })
 }
 
-// Por si en el futuro se necesitan traer los productos por id esta esta funcion.
+// Por si en el futuro se necesitan traer los productos por id de catgoria esta esta funcion.
 function listarProductosPorId(req, res){
-    conexion.query(`SELECT id, name, url_image, price, discount, category FROM product WHERE ID = ${req.params.id}`, (error, results)=>{
+    conexion.query(`SELECT id, name, url_image, price, discount, category FROM product WHERE category = ${req.params.id}`, (error, results)=>{
+        if(error){
+            res.send(error);
+            throw error;
+        } 
+        
+        if(results.length === 0){
+            res.send(
+                {
+                    data: "ok",
+                    resultado: results.length
+                }
+            );
+            return;
+        } else{
+            res.send(results);
+        }
+    })
+}
+
+// Por si en el futuro se necesitan traer los productos por id esta esta funcion.
+function listarCategorias(req, res){
+    conexion.query(`SELECT id, name FROM category`, (error, results)=>{
         if(error){
             res.send(error);
             throw error;
@@ -85,5 +107,6 @@ function buscarProducto(req, res){
 module.exports = {
     listarProductos         : listarProductos,
     listarProductosPorId    : listarProductosPorId,
-    buscarProducto          : buscarProducto
+    buscarProducto          : buscarProducto,
+    listarCategorias        : listarCategorias
 };
